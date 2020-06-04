@@ -12,44 +12,74 @@
     <script src="d3.v2.min.js"></script>
     <script src="timeknots.js"></script>
     <script>
-      let riotData = [
-        {
-          name: 'The Boston Bread Riot',
-          date: '1710',
-          dateStr: '1710&ndash;1713',
-        },
-        {
-          name: 'Stono Rebellion',
-          date: '1739',
-        },
-        {
-          name: 'The Stamp Act Riots',
-          date: '1765',
-        },
-        {
-          name: 'The Townshend Act Protests and Murder of 11-year-old Christopher Seider',
-          date: '1767',
-          dateStr: '1767&ndash;1770',
-          color: '#EA4334',
-        },
-        {
-          name: 'The Boston Massacre',
-          date: '1770',
-          color: '#CC0000',
-        },
-      ];
+      let url = "https://spreadsheets.google.com/feeds/cells/1sr99iZPH_iDdHwBQwB83_GKOpcbH8pmc2bgj1Nx4doo/1/public/values?alt=json";
+      window.fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          let cells = data.feed.entry;
 
-      TimeKnots.draw(
-        '#riot-timeline',
-        riotData,
-        {
-          color: '#E06666',
-          dateFormat: '%Y',
-          width: 500,
-          showLabels: true,
-          labelFormat: '%Y'
-        }
-      );
+          let keys = [];
+          let riotData = [];
+          let currentDatum;
+          for (let cell of cells) {
+            const row = parseInt(cell['gs$cell'].row);
+            const col = parseInt(cell['gs$cell'].col);
+            const value = cell['gs$cell']['$t'];
+
+            // process header row
+            if (row == 1) {
+              keys.push(value);
+
+            // process data rows
+            } else {
+              if (col == 1) {
+                if (currentDatum) {
+                  riotData.push(currentDatum);
+                }
+                currentDatum = {};
+              }
+
+              const keyIndex = parseInt(col) - 1;
+              const key = keys[keyIndex];
+              currentDatum[key] = value;
+            }
+          }
+
+          const keyMappings = {
+            'Header':    'name',
+            'Year':      'dateStr',
+            'Text':      'description',
+            'Dot Color': 'color',
+          };
+
+          riotData = riotData.map(oldDatum => {
+            let newDatum = {};
+            for (oldKey in oldDatum) {
+              const value = oldDatum[oldKey];
+              const newKey = keyMappings[oldKey];
+              if (newKey) {
+                newDatum[newKey] = value;
+              }
+              if (newKey == 'dateStr') {
+                newDatum.date = value.split('-')[0];
+              }
+            }
+            return newDatum;
+          });
+
+          TimeKnots.draw(
+            '#riot-timeline',
+            riotData,
+            {
+              color: '#E06666',
+              dateFormat: '%Y',
+              width: 500,
+              showLabels: true,
+              labelFormat: '%Y'
+            }
+          );
+        });
+
     </script>
   </body>
 </html>
