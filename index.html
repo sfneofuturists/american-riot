@@ -15,24 +15,34 @@
       let riotData = [
         {
           name: 'The Boston Bread Riot',
-          date: '1710'
+          date: '1710',
         },
         {
           name: 'Stono Rebellion',
-          date: '1739'
+          date: '1739',
         },
         {
           name: 'The Stamp Act Riots',
-          date: '1765'
-        }
+          date: '1765',
+        },
+        {
+          name: 'The Townshend Act Protests and Murder of 11-year-old Christopher Seider',
+          date: '1767',
+          color: '#EA4334',
+        },
+        {
+          name: 'The Boston Massacre',
+          date: '1770',
+          color: '#CC0000',
+        },
       ];
 
       TimeKnots.draw(
         '#riot-timeline',
         riotData,
         {
+          color: '#E06666',
           dateFormat: '%Y',
-          color: '#696',
           width: 500,
           showLabels: true,
           labelFormat: '%Y'
