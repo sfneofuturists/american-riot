@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>an interactive, non-expert history of American riot as it contributes to legal action</title>
+  </head>
+  <body>
+    <h1>an interactive, non-expert history of American riot as it contributes to legal action</h1>
+
+    <div id="riot-timeline">
+    </div>
+
+    <script src="d3.v2.min.js"></script>
+    <script src="timeknots.js"></script>
+    <script>
+      let riotData = [
+        {
+          name: 'The Boston Bread Riot',
+          date: '1710'
+        },
+        {
+          name: 'Stono Rebellion',
+          date: '1739'
+        },
+        {
+          name: 'The Stamp Act Riots',
+          date: '1765'
+        }
+      ];
+
+      TimeKnots.draw(
+        '#riot-timeline',
+        riotData,
+        {
+          dateFormat: '%Y',
+          color: '#696',
+          width: 500,
+          showLabels: true,
+          labelFormat: '%Y'
+        }
+      );
+    </script>
+  </body>
+</html>
