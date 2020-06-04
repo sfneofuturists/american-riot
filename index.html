@@ -69,6 +69,7 @@
             'Year':      'dateStr',
             'Text':      'description',
             'Dot Color': 'color',
+            'Dot Size':  'radius',
           };
 
           riotData = riotData.map(oldDatum => {
@@ -81,6 +82,19 @@
               }
               if (newKey == 'dateStr') {
                 newDatum.date = value.split('-')[0];
+              }
+              if (newKey == 'radius') {
+                switch (value.toLowerCase()) {
+                  case 'small':
+                    newDatum.radius = 5;
+                    break;
+                  case 'large':
+                    newDatum.radius = 15;
+                    break;
+                  default:
+                    newDatum.radius = null;
+                    break;
+                }
               }
             }
             return newDatum;
