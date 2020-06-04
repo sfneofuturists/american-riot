@@ -179,6 +179,15 @@ var TimeKnots = {
         tip.append("img").style("float", "left").style("margin-right", "4px").attr("src", d.img).attr("width", "64px");
       }
       tip.append("div").style("float", "left").html(dateValue );
+
+      // Append long text description.
+      if (d.description) {
+        tip.append("div")
+          .style("white-space", "pre-wrap")
+          .style("clear", "both")
+          .html(d.description);
+      }
+
       tip.transition()
       .duration(100)
       .style("opacity", .9);
