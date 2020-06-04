@@ -178,13 +178,19 @@ var TimeKnots = {
       if(d.img != undefined){
         tip.append("img").style("float", "left").style("margin-right", "4px").attr("src", d.img).attr("width", "64px");
       }
-      tip.append("div").style("float", "left").html(dateValue );
+      tip.append("div")
+        .style("float", "left")
+        .html(dateValue)
+        .style("font-weight", "bold")
+        .style("margin-bottom", "3px");
 
       // Append long text description.
       if (d.description) {
         tip.append("div")
-          .style("white-space", "pre-wrap")
+          .style("font-size", "14px")
+          .style("white-space", "pre-wrap") // render line breaks
           .style("clear", "both")
+          .style("max-width", "500px")
           .html(d.description);
       }
 
