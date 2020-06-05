@@ -2,9 +2,13 @@
 <html lang="en">
   <head>
     <title>an interactive, non-expert history of American riot as it contributes to legal action</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <style>
       body {
-        background-color: #e0f0ed;
+        /*background-color: #e0f0ed;*/
+        /*background-color: #f7efef;*/
+        background-color: #e5dede;
+        font-family: 'Open Sans', sans-serif;
         margin: 0;
         width: 100%;
         padding: 0;
@@ -13,20 +17,22 @@
       header {
         background-color: #c20404;
         margin: 0;
-        padding: 10px;
+        padding: 20px 0 20px 40px;
       }
 
       h1 {
         color: #ffffff;
-        font-family: 'Times New Roman';
-        font-size: 18px;
+        font-size: 30px;
         margin: 0;
       }
 
       h2 {
-        color: #000000;
-        font-family: 'Times New Roman';
+        color: #ffffff;
         font-size: 13px;
+      }
+
+      #timeline-container {
+        padding: 0 20px;
       }
 
       #riot-timeline {
@@ -36,6 +42,7 @@
         background-color: white;
         border: 2px solid black;
         border-radius: 8px 8px;
+        font-family: 'Roboto', sans-serif;
         max-width: 500px;
         padding: 10px;
       }
@@ -57,10 +64,9 @@
       <h2>created by Clare Palmer and Topher Lin for <i>The World Wide Wrench</i></h2>
     </header>
 
-    <div id="riot-timeline1">
-    </div>
-
-    <div id="riot-timeline2">
+    <div id="timeline-container">
+      <div id="riot-timeline1"></div>
+      <div id="riot-timeline2"></div>
     </div>
 
     <script src="d3.v2.min.js"></script>
