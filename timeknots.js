@@ -195,18 +195,18 @@ var TimeKnots = {
       // Append long text description.
       if (d.description) {
         tip.append("div")
+          .attr('class', 'tooltip-description')
           .style("font-size", "14px")
           .style("white-space", "pre-wrap") // render line breaks
-          .style("max-width", "500px")
           .html(d.description);
       }
       if (d.responseDescription) {
         tip.append("div")
+          .attr('class', 'tooltip-description')
           .style("font-size", "14px")
           .style("font-weight", "bold")
           .style("color", "#165885")
           .style("white-space", "pre-wrap") // render line breaks
-          .style("max-width", "500px")
           .html(d.responseDescription);
       }
 
