@@ -35,7 +35,10 @@
     <h1>an interactive, non-expert history of American riot as it contributes to legal action</h1>
     <h2>created by Clare Palmer and Topher Lin for <i>The World Wide Wrench</i></h2>
 
-    <div id="riot-timeline">
+    <div id="riot-timeline1">
+    </div>
+
+    <div id="riot-timeline2">
     </div>
 
     <script src="d3.v2.min.js"></script>
@@ -114,16 +117,35 @@
 
           riotData.sort(datum => parseInt(datum.date));
 
+          let riotData1 = riotData.slice(0, 54);
+          let riotData2 = riotData.slice(54);
+
+          const baseConfig = {
+            dateFormat: '%Y',
+            showLabels: true,
+            labelFormat: '%Y',
+            width: Math.max(720, window.innerWidth * 4.0 / 5.0),
+          };
+
+          const timeline1Height = 200;
+          const verticalDistance = 600;
+
           TimeKnots.draw(
-            '#riot-timeline',
-            riotData,
-            {
-              dateFormat: '%Y',
-              width: Math.max(720, window.innerWidth * 3.0 / 4.0),
-              height: 200,
-              showLabels: true,
-              labelFormat: '%Y'
-            }
+            '#riot-timeline1',
+            riotData1,
+            Object.assign(baseConfig, {
+              height: timeline1Height,
+              tooltipDirectionY: 1,
+            }),
+          );
+
+          TimeKnots.draw(
+            '#riot-timeline2',
+            riotData2,
+            Object.assign(baseConfig, {
+              height: timeline1Height + verticalDistance,
+              tooltipDirectionY: -1,
+            }),
           );
         });
 

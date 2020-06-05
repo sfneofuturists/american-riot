@@ -13,7 +13,8 @@ var TimeKnots = {
       labelFormat: "%Y/%m/%d %H:%M:%S",
       addNow: false,
       seriesColor: d3.scale.category20(),
-      dateDimension: true
+      dateDimension: true,
+      tooltipDirectionY: -1,
     };
 
 
@@ -238,7 +239,12 @@ var TimeKnots = {
     svg
       .on("mousemove", function(){
         tipPixels = parseInt(tip.style("height").replace("px", ""));
-        const top = d3.event.pageY + 30;
+        let top;
+        if (cfg.tooltipDirectionY > 0) {
+          top = d3.event.pageY + 30;
+        } else {
+          top = d3.event.pageY - tipPixels - margin;
+        }
         let percentageEventsInPast = curEventIndex * 1.0 / numEvents;
         let horizontalOffset;
         if (percentageEventsInPast < 0.3) {
