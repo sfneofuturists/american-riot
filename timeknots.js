@@ -211,6 +211,7 @@ var TimeKnots = {
       }
 
       tip.transition()
+      .style('z-index', '1')
       .duration(100)
       .style("opacity", .9);
 
@@ -221,6 +222,7 @@ var TimeKnots = {
         .duration(100).attr("r", function(d){if(d.radius != undefined){return d.radius} return cfg.radius});
         tip.transition()
         .duration(100)
+      .style('z-index', '-1')
     .style("opacity", 0)});
 
     //Adding start and end labels
