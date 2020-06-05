@@ -189,6 +189,7 @@ var TimeKnots = {
       tip.append("div")
         .html(dateValue)
         .style("font-weight", "bold")
+        .style("font-size", "20px")
         .style("margin-bottom", "3px");
 
       // Append long text description.
@@ -203,6 +204,7 @@ var TimeKnots = {
         tip.append("div")
           .style("font-size", "14px")
           .style("font-weight", "bold")
+          .style("color", "#165885")
           .style("white-space", "pre-wrap") // render line breaks
           .style("max-width", "500px")
           .html(d.responseDescription);

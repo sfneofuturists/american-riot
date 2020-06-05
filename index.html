@@ -3,14 +3,28 @@
   <head>
     <title>an interactive, non-expert history of American riot as it contributes to legal action</title>
     <style>
+      body {
+        background-color: #e0f0ed;
+        margin: 0;
+        min-width: 720px;
+        padding: 0;
+      }
+
+      header {
+        background-color: #c20404;
+        margin: 0;
+        padding: 10px;
+      }
+
       h1 {
-        color: '#e34f4f';
+        color: #ffffff;
         font-family: 'Times New Roman';
         font-size: 18px;
+        margin: 0;
       }
 
       h2 {
-        color: '#000000';
+        color: #000000;
         font-family: 'Times New Roman';
         font-size: 13px;
       }
@@ -19,21 +33,24 @@
       }
 
       .tooltip {
-        border: 1px solid black;
+        background-color: white;
+        border: 2px solid black;
         border-radius: 8px 8px;
         padding: 10px;
       }
 
       .tooltip-img {
         float: left;
-        margin-right: 4px;
+        margin: 0 10px 8px 0;
         width: 150px;
       }
     </style>
   </head>
   <body>
-    <h1>an interactive, non-expert history of American riot as it contributes to legal action</h1>
-    <h2>created by Clare Palmer and Topher Lin for <i>The World Wide Wrench</i></h2>
+    <header>
+      <h1>An Interactive, Non-Expert, Abridged History of American Riot</h1>
+      <h2>created by Clare Palmer and Topher Lin for <i>The World Wide Wrench</i></h2>
+    </header>
 
     <div id="riot-timeline1">
     </div>
@@ -102,21 +119,24 @@
               if (newKey == 'radius') {
                 switch (value.toLowerCase()) {
                   case 'medium':
-                    newDatum.radius = 10;
+                    newDatum.radius = 7;
                     break;
                   case 'large':
-                    newDatum.radius = 15;
+                    newDatum.radius = 10;
                     break;
                   default:
-                    newDatum.radius = 2;
+                    newDatum.radius = 3;
                     break;
                 }
               }
-
               if (newKey == 'responseDescription') {
                 newDatum.responseDescription = '\nThe response: ' + newDatum.responseDescription;
               }
             }
+            // set a default color
+            if (!newDatum.color) newDatum.color = '#e06666';
+            // hacky way to make dots filled in even when not hovered over
+            newDatum.background = newDatum.color;
             return newDatum;
           });
 
