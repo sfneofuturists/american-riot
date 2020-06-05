@@ -37,6 +37,17 @@ var TimeKnots = {
     .style("padding", "5px 10px 5px 10px")
     .style("-moz-border-radius", "8px 8px")
     .style("border-radius", "8px 8px");
+
+    // We want to position the tooltip differently depending on if the event is
+    // near the left or right side of the timeline. The author of this library
+    // made the tooltip positioning code independent of the code that
+    // constructs the tooltip and is therefore aware of what event is the
+    // current event. So, we keep that state in in this variable so that the
+    // positioning code knows what's up.
+    let curEventIndex;
+    const numEvents = events.length;
+    const tooltipMaxWidth = 500;
+
     var svg = d3.select(id).append('svg').attr("width", cfg.width).attr("height", cfg.height);
     //Calculate times in terms of timestamps
     if(!cfg.dateDimension){
@@ -154,7 +165,9 @@ var TimeKnots = {
           return x;
         }
         return Math.floor(cfg.width/2)
-    }).on("mouseover", function(d){
+    }).on("mouseover", function(d, i){
+      curEventIndex = i;
+
       if(cfg.dateDimension){
         // Allow user to specify a string representing the date.
         var datetime;
@@ -232,7 +245,20 @@ var TimeKnots = {
       .on("mousemove", function(){
         tipPixels = parseInt(tip.style("height").replace("px", ""));
         const top = d3.event.pageY + 30;
-        const left = d3.event.pageX + 20;
+        let percentageEventsInPast = curEventIndex * 1.0 / numEvents;
+        let horizontalOffset;
+        if (percentageEventsInPast < 0.3) {
+          horizontalOffset = 20;
+        } else if (percentageEventsInPast < 0.5) {
+          horizontalOffset = -80;
+        } else if (percentageEventsInPast < 0.7) {
+          horizontalOffset = -100;
+        } else if (percentageEventsInPast < 0.8) {
+          horizontalOffset = -150;
+        } else {
+          horizontalOffset = -450;
+        }
+        const left = d3.event.pageX + horizontalOffset;
         return tip.style("top", top + "px").style("left", left + "px");
       })
       .on("mouseout", function() {

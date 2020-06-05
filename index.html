@@ -106,6 +106,8 @@
             return newDatum;
           });
 
+          riotData.sort(datum => parseInt(datum.date));
+
           TimeKnots.draw(
             '#riot-timeline',
             riotData,
