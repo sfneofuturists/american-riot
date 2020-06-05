@@ -250,27 +250,18 @@ var TimeKnots = {
 
     svg
       .on("mousemove", function(){
-        tipPixels = parseInt(tip.style("height").replace("px", ""));
+        const tipHeight = parseInt(tip.style("height").replace("px", ""));
+        const tipWidth = parseInt(tip.style("width").replace("px", ""));
         let top;
         if (cfg.tooltipDirectionY > 0) {
           top = d3.event.pageY + 30;
         } else {
-          top = d3.event.pageY - 15 - tipPixels - margin;
+          top = d3.event.pageY - 15 - tipHeight - margin;
         }
-        let percentageEventsInPast = curEventIndex * 1.0 / numEvents;
-        let horizontalOffset;
-        if (percentageEventsInPast < 0.3) {
-          horizontalOffset = 20;
-        } else if (percentageEventsInPast < 0.5) {
-          horizontalOffset = -80;
-        } else if (percentageEventsInPast < 0.7) {
-          horizontalOffset = -100;
-        } else if (percentageEventsInPast < 0.8) {
-          horizontalOffset = -150;
-        } else {
-          horizontalOffset = -450;
+        let left = d3.event.pageX;
+        if (left + tipWidth > cfg.width) {
+          left -= tipWidth;
         }
-        const left = d3.event.pageX + horizontalOffset;
         return tip.style("top", top + "px").style("left", left + "px");
       })
       .on("mouseout", function() {
