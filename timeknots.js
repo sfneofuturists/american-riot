@@ -199,6 +199,14 @@ var TimeKnots = {
           .style("max-width", "500px")
           .html(d.description);
       }
+      if (d.responseDescription) {
+        tip.append("div")
+          .style("font-size", "14px")
+          .style("font-weight", "bold")
+          .style("white-space", "pre-wrap") // render line breaks
+          .style("max-width", "500px")
+          .html(d.responseDescription);
+      }
 
       tip.transition()
       .duration(100)

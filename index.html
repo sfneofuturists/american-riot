@@ -85,6 +85,7 @@
             'Dot Color': 'color',
             'Dot Size':  'radius',
             'Media':     'img',
+            'The Response': 'responseDescription',
           };
 
           riotData = riotData.map(oldDatum => {
@@ -110,6 +111,10 @@
                     newDatum.radius = 2;
                     break;
                 }
+              }
+
+              if (newKey == 'responseDescription') {
+                newDatum.responseDescription = '\nThe response: ' + newDatum.responseDescription;
               }
             }
             return newDatum;
