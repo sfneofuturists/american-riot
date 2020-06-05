@@ -33,16 +33,6 @@ var TimeKnots = {
     .style("opacity", 0)
     .style("position", "absolute");
 
-    // We want to position the tooltip differently depending on if the event is
-    // near the left or right side of the timeline. The author of this library
-    // made the tooltip positioning code independent of the code that
-    // constructs the tooltip and is therefore aware of what event is the
-    // current event. So, we keep that state in in this variable so that the
-    // positioning code knows what's up.
-    let curEventIndex;
-    const numEvents = events.length;
-    const tooltipMaxWidth = 500;
-
     var svg = d3.select(id).append('svg').attr("width", cfg.width).attr("height", cfg.height);
     //Calculate times in terms of timestamps
     if(!cfg.dateDimension){
@@ -161,8 +151,6 @@ var TimeKnots = {
         }
         return Math.floor(cfg.width/2)
     }).on("mouseover", function(d, i){
-      curEventIndex = i;
-
       if(cfg.dateDimension){
         // Allow user to specify a string representing the date.
         var datetime;
