@@ -28,15 +28,9 @@ var TimeKnots = {
     }
     var tip = d3.select(id)
     .append('div')
+    .attr('class', 'tooltip')
     .style("opacity", 0)
-    .style("position", "absolute")
-    .style("font-family", "Helvetica Neue")
-    .style("font-weight", "300")
-    .style("background","rgba(0,0,0,0.5)")
-    .style("color", "white")
-    .style("padding", "5px 10px 5px 10px")
-    .style("-moz-border-radius", "8px 8px")
-    .style("border-radius", "8px 8px");
+    .style("position", "absolute");
 
     // We want to position the tooltip differently depending on if the event is
     // near the left or right side of the timeline. The author of this library
