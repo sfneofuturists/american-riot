@@ -17,6 +17,12 @@
 
       #riot-timeline {
       }
+
+      .tooltip-img {
+        float: left;
+        margin-right: 4px;
+        width: 150px;
+      }
     </style>
   </head>
   <body>
@@ -69,6 +75,7 @@
             'Text':      'description',
             'Dot Color': 'color',
             'Dot Size':  'radius',
+            'Media':     'img',
           };
 
           riotData = riotData.map(oldDatum => {

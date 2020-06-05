@@ -176,10 +176,9 @@ var TimeKnots = {
       .duration(100).attr("r",  function(d){if(d.radius != undefined){return Math.floor(d.radius*1.5)} return Math.floor(cfg.radius*1.5)});
       tip.html("");
       if(d.img != undefined){
-        tip.append("img").style("float", "left").style("margin-right", "4px").attr("src", d.img).attr("width", "64px");
+        tip.append("img").attr("src", d.img).attr('class', 'tooltip-img');
       }
       tip.append("div")
-        .style("float", "left")
         .html(dateValue)
         .style("font-weight", "bold")
         .style("margin-bottom", "3px");
@@ -189,7 +188,6 @@ var TimeKnots = {
         tip.append("div")
           .style("font-size", "14px")
           .style("white-space", "pre-wrap") // render line breaks
-          .style("clear", "both")
           .style("max-width", "500px")
           .html(d.description);
       }
