@@ -114,7 +114,8 @@
                 newDatum[newKey] = value;
               }
               if (newKey == 'dateStr') {
-                newDatum.date = value.split('-')[0];
+                // force the date to be interpreted in UTC instead of browser's time zone
+                newDatum.date = value.split('-')[0] + '-01-01T00:00:00';
               }
               if (newKey == 'radius') {
                 switch (value.toLowerCase()) {
