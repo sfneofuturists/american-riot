@@ -228,10 +228,16 @@ var TimeKnots = {
     }
 
 
-    svg.on("mousemove", function(){
+    svg
+      .on("mousemove", function(){
         tipPixels = parseInt(tip.style("height").replace("px", ""));
-    return tip.style("top", (d3.event.pageY + 30)+"px").style("left",(d3.event.pageX+20)+"px");})
-    .on("mouseout", function(){return tip.style("opacity", 0).style("top","0px").style("left","0px");});
+        const top = d3.event.pageY + 30;
+        const left = d3.event.pageX + 20;
+        return tip.style("top", top + "px").style("left", left + "px");
+      })
+      .on("mouseout", function() {
+        return tip.style("opacity", 0).style("top","0px").style("left","0px");
+      });
   }
 }
 
