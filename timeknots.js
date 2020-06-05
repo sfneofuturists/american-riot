@@ -251,7 +251,7 @@ var TimeKnots = {
         if (cfg.tooltipDirectionY > 0) {
           top = d3.event.pageY + 30;
         } else {
-          top = d3.event.pageY - tipPixels - margin;
+          top = d3.event.pageY - 15 - tipPixels - margin;
         }
         let percentageEventsInPast = curEventIndex * 1.0 / numEvents;
         let horizontalOffset;
