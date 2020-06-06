@@ -250,7 +250,15 @@ var TimeKnots = {
         if (left + tipWidth > cfg.width) {
           left -= tipWidth;
         }
-        return tip.style("top", top + "px").style("left", left + "px");
+        if (left < 0) {
+          left = window.innerWidth * 0.025;
+        }
+
+        let tipMaxWidth = Math.min(500, window.innerWidth * 0.975);
+        if (left + tipWidth > window.innerWidth * .8) {
+          tipMaxWidth -= window.innerWidth * 0.1;
+        }
+        return tip.style("top", top + "px").style("left", left + "px").style("max-width", tipMaxWidth + "px");
       })
       .on("mouseout", function() {
         return tip.style("opacity", 0).style("top","0px").style("left","0px");
